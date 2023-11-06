@@ -1,5 +1,3 @@
-# Experiment-7--Implementation-of-Speech-Recognition
-
 ## Aim:
  Construct a python program to implement speech recognition.
 ## EQUIPMENTS REQUIRED:
@@ -16,8 +14,40 @@ Step 7:Print the transcribed text on the console if the transcribe process was s
 Step 8:Handle any potential errors during the transcribing process. If the audio is not clear, print "not clear". If there's an error while trying to retrieve the transcribed text from the Google speech recognizer, print "Couldnt get results from google speech recognizer".<br>
 
 ## Program:
+```
+Developed by: Rama E.K. Lekshmi
+Register Number:212222240082
+```
+```
+import speech_recognition as sr
 
+# Assign a string variable "file" with the name of the audio file that you want to transcribe.
+file = "audio.wav"
+
+# Create an instance of the Recognizer class called "r".
+r = sr.Recognizer()
+
+# Use the AudioFile() method of sr to create an AudioFile object with the audio file name passed as an argument.
+with sr.AudioFile(file) as source:
+    audio = r.record(source)
+
+# Use the recognize_google() method of r to transcribe the audio data stored in the "audio" variable.
+try:
+    text = r.recognize_google(audio)
+except sr.UnknownValueError:
+    print("Not clear")
+except sr.RequestError as e:
+    print("Couldn't get results from Google Speech Recognition service; {0}".format(e))
+
+# Print the text in the next lines.
+for line in text.splitlines():
+
+    print(line)
+```
 
 ## Output:
+![Screenshot 2023-11-06 210108](https://github.com/Rama-Lekshmi/Experiment-5--Implementation-of-Speech-Recognition/assets/118541549/e578a8cc-a380-4dd8-878d-3cd931c7b60f)
+
 
 ## Result:
+Thus, we have implemented a program that will transcribe the audio file in the file variable and print the transcribed text on the console, one line at a time.
